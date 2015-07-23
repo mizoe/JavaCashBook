@@ -9,17 +9,25 @@ public class Journal {
 
 	public Journal(){
 	}
-	public Journal(int year, int month, int day, int hour, int minute, String usage, int amount, int balance){
+	public Journal(int year, int month, int day, int hour, int minute, String usage, int amount){
 		Calendar cal = Calendar.getInstance();
 		cal.set(year, month, day, hour, minute);
 		this.date   = cal;
+
 		this.usage  = usage;
 		this.amount = amount;
+
+		int balance = 0;
 		this.balance= balance;
 	}
 
-
-	private Calendar getDate(){
+	public void setBalance(int balance){
+		this.balance = balance;
+	}
+	public int getAmount(){
+		return amount;
+	}
+	public Calendar getDate(){
 		return date;
 	}
 
