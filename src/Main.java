@@ -44,7 +44,7 @@ public class Main {
 					cb.add(year, month, day, hour, minute, usage, amount);
 				}catch(Exception e){
 					//入力されたデータが違うので終了
-					System.out.println(e);
+					System.out.println("データ形式が異なります。終了します。:\n");
 					break UILOOP;
 				}
 				break;
