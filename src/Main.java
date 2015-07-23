@@ -43,6 +43,7 @@ public class Main {
 					amount 	= Integer.parseInt(sa[6]);
 					cb.add(year, month, day, hour, minute, usage, amount);
 				}catch(Exception e){
+					//入力されたデータが違うので終了
 					System.out.println(e);
 					break UILOOP;
 				}

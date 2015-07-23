@@ -32,7 +32,12 @@ public class Journal {
 	}
 
 	public String toString(){
+		// TODO: \tを数値書式にする
 		String dateStr = date.getTime().toString();
-		return dateStr + "\t" + usage + "\t" + amount + "\t" + balance + "\n";
+		String amountStr = amount + "\t\t";
+		if(amount<0){
+			amountStr = "\t\t" + amount;
+		}
+		return dateStr + "\t" + usage + "\t" + amountStr + "\t" + balance + "\n";
 	}
 }

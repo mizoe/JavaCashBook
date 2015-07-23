@@ -33,10 +33,10 @@ public class CashBook {
 
 	//画面にすべての仕訳を出力
 	public void printAll(){
-		System.out.println("             日付            	用途	入出金	残高");
-		System.out.println("----------------------------------------------------");
+		System.out.println("ID |             日付              | 用途  | 入金  | 出金  | 残高");
+		System.out.println("---+-------------------------------+-------+-------+-------+-----");
 		for(int i=0;i<journal.size();i++){
-			System.out.format(journal.get(i).toString());
+			System.out.format(i + "\t" + journal.get(i).toString());
 		}
 	}
 
