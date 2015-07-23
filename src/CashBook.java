@@ -22,7 +22,7 @@ public class CashBook {
 		this.updateBalance();
 	}
 
-	//すべての仕訳の残高を更新 TODO:最低限の計算で更新できるようにする
+	//すべての仕訳の残高を更新 TODO:最低限の計算で更新できるようにするための、別メソッドを作る
 	public void updateBalance(){
 		int balance = 0;
 		for(int i=0;i<journal.size();i++){
@@ -33,14 +33,17 @@ public class CashBook {
 
 	//画面にすべての仕訳を出力
 	public void printAll(){
+		System.out.println("             日付            	用途	入出金	残高");
+		System.out.println("----------------------------------------------------");
 		for(int i=0;i<journal.size();i++){
-			System.out.format(journal.get(i).toString() + "\n");
+			System.out.format(journal.get(i).toString());
 		}
 	}
 
 	//仕訳の追加
 	public void add(int year, int month, int day, int hour, int minute, String usage, int amount){
 		journal.add(new Journal(year, month, day, hour, minute, usage, amount));
+		this.sort();
 	}
 
 }

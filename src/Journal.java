@@ -33,6 +33,6 @@ public class Journal {
 
 	public String toString(){
 		String dateStr = date.getTime().toString();
-		return dateStr + " " + usage + " " + amount + " " + balance;
+		return dateStr + "\t" + usage + "\t" + amount + "\t" + balance + "\n";
 	}
 }
