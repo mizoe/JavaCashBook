@@ -5,7 +5,7 @@ public class Journal {
 	private String usage;
 	private int amount;
 	private int balance;
-	private static int lastBalance;
+	public boolean isDeleted;
 
 	public Journal(){
 	}
@@ -19,6 +19,8 @@ public class Journal {
 
 		int balance = 0;
 		this.balance= balance;
+
+		this.isDeleted = false;
 	}
 
 	public void setBalance(int balance){

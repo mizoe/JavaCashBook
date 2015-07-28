@@ -26,6 +26,9 @@ public class CashBook {
 	public void updateBalance(){
 		int balance = 0;
 		for(int i=0;i<journal.size();i++){
+			if(journal.get(i).isDeleted){
+				continue;
+			}
 			balance += journal.get(i).getAmount();
 			journal.get(i).setBalance(balance);
 		}
@@ -36,6 +39,9 @@ public class CashBook {
 		System.out.println("ID |             日付              | 用途  | 入金  | 出金  | 残高");
 		System.out.println("---+-------------------------------+-------+-------+-------+-----");
 		for(int i=0;i<journal.size();i++){
+			if(journal.get(i).isDeleted){
+				continue;
+			}
 			System.out.format(i + "\t" + journal.get(i).toString());
 		}
 	}
@@ -46,4 +52,14 @@ public class CashBook {
 		this.sort();
 	}
 
+	//仕訳の削除(削除フラグのオン)
+	public void delete(int id){
+		journal.get(id).isDeleted = true;
+		this.updateBalance();
+	}
+
+	//仕訳の総数を獲得（削除フラグがオンのものを含む）
+	public int size(){
+		return journal.size();
+	}
 }

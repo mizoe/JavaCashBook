@@ -2,8 +2,8 @@ import lib.Input;
 
 public class Main {
 
+	static CashBook cb = new CashBook();
 	public static void main(String[] args) {
-		CashBook cb = new CashBook();
 
 		//サンプルデータ
 		cb.add(2015, 1, 1, 10, 3, "ビール",	-300);
@@ -50,9 +50,12 @@ public class Main {
 				break;
 			case 3:
 				System.out.println("3:更新");
+				cb.printAll();
 				break;
 			case 4:
 				System.out.println("4:削除");
+				cb.printAll();
+				deleteUI();
 				break;
 			default:
 				System.out.println("--- 終了します ---");
@@ -60,5 +63,18 @@ public class Main {
 			}
 		}
 
+	}
+	private static void deleteUI(){
+		while(true){
+			System.out.println("削除する仕訳番号を指定してください。範囲外の値：メインメニュー\n");
+			int n = Input.getInt();
+
+			if(n < 0 || n >= cb.size()){
+				System.out.println("メインメニューへ移動");
+				return;
+			}
+
+			cb.delete(n);
+		}
 	}
 }
