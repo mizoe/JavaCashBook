@@ -62,4 +62,10 @@ public class CashBook {
 	public int size(){
 		return journal.size();
 	}
+
+	//更新の時の表示例を獲得
+	public String getUpdateExample(int id){
+		return journal.get(id).getExample();
+	}
+
 }

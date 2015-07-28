@@ -11,7 +11,7 @@ public class Journal {
 	}
 	public Journal(int year, int month, int day, int hour, int minute, String usage, int amount){
 		Calendar cal = Calendar.getInstance();
-		cal.set(year, month, day, hour, minute);
+		cal.set(year, (month-1), day, hour, minute);
 		this.date   = cal;
 
 		this.usage  = usage;
@@ -31,6 +31,16 @@ public class Journal {
 	}
 	public Calendar getDate(){
 		return date;
+	}
+
+	@SuppressWarnings("static-access")
+	public String getExample(){
+		Calendar d = this.date;
+		// "例）2015,1,1,9,25,お年玉,2000"
+		String ex = "例）" + d.get(d.YEAR) + ","+ (d.get(d.MONTH)+1) + "," + d.get(d.DATE) + ","
+				+ d.get(d.HOUR) + "," + d.get(d.MINUTE) + ","
+				+ this.usage + "," + this.amount;
+		return ex;
 	}
 
 	public String toString(){
