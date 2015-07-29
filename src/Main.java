@@ -10,10 +10,11 @@ public class Main {
 		cb.add(2015, 1, 1, 10, 1, "かわ", 	-160);
 		cb.add(2015, 1, 1, 10, 2, "つくね",	-160);
 		cb.add(2015, 1, 1,  9, 0, "繰越", 	1000);
+		cb.addGoal(2015, 1, "串鐵は週1回まで");
+		cb.addGoal(2015, 2, "串鐵は月2回まで");
 
-		String menu1 = "1:すべて表示 2:新規作成 3:更新 4:削除";
+		String menu1 = "1:すべて表示 2:新規作成 3:更新 4:削除 5:今月の目標";
 		//ユーザーインタフェース
-		UILOOP:
 		while(true){
 			System.out.println(menu1);
 			int n = Input.getInt();
@@ -36,9 +37,14 @@ public class Main {
 				cb.printAll();
 				deleteUI();
 				break;
+			case 5:
+				System.out.println("5:今月の目標");
+				cb.printGoal();
+				goalUI();
+				break;
 			default:
-				System.out.println("--- 終了します ---");
-				break UILOOP;
+				System.out.println("正しい値を指定してください。");
+				break;
 			}
 		}
 	}
@@ -54,6 +60,10 @@ public class Main {
 		System.out.println("「年,月,日,時,分,用途,金額」の順で、カンマ区切りで入力して下さい。");
 		System.out.println(example);
 		String s = Input.getString();
+		//nullチェック
+		if(s == null || s.length() == 0){
+			return;
+		}
 		//カンマ区切りで配列へ
 		String[] sa = s.split(",");
 
@@ -106,4 +116,28 @@ public class Main {
 		}
 	}
 
+	private static void goalUI(){
+		System.out.println("「年,月,今月の目標」の順で、カンマ区切りで入力して下さい。");
+		String s = Input.getString();
+		//nullチェック
+		if(s == null || s.length() == 0){
+			return;
+		}
+		//カンマ区切りで配列へ
+		String[] sa = s.split(",");
+
+		int year, month;
+		String title;
+		try{
+			year 	= Integer.parseInt(sa[0]);
+			month 	= Integer.parseInt(sa[1]);
+			title  	= sa[2];
+			cb.addGoal(year, month, title);
+			cb.printGoal();
+		}catch(Exception e){
+			//入力されたデータが違う
+			System.out.println("データ形式が異なります。\n");
+		}
+
+	}
 }

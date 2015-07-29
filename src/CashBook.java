@@ -4,9 +4,11 @@ import java.util.Collections;
 
 public class CashBook {
 	private ArrayList<Journal> journal;
+	private ArrayList<Goal> goal;
 
 	public CashBook(){
 		 journal = new ArrayList<Journal>();
+		 goal    = new ArrayList<Goal>();
 	}
 
 	// TODO: 最後の残高を知りたい（最低限の計算で更新できるようにしたいので）
@@ -22,7 +24,8 @@ public class CashBook {
 		this.updateBalance();
 	}
 
-	//すべての仕訳の残高を更新 TODO:最低限の計算で更新できるようにするための、別メソッドを作る
+	//すべての仕訳の残高を更新
+	// TODO:最低限の計算で更新できるようにするための、別メソッドを作る
 	public void updateBalance(){
 		int balance = 0;
 		for(int i=0;i<journal.size();i++){
@@ -68,4 +71,25 @@ public class CashBook {
 		return journal.get(id).getExample();
 	}
 
+	//今月の目標を出力
+	public void printGoal(){
+		for(int i=0;i<goal.size();i++){
+			System.out.println(goal.get(i).year + "/" + goal.get(i).month + " " + goal.get(i).title);
+		}
+
+	}
+
+	//今月の目標を追加・更新
+	public void addGoal(int y, int m, String t){
+		//既存データにすでに存在するかチェック
+		for(int i=0;i<goal.size();i++){
+			if(goal.get(i).year == y && goal.get(i).month == m){
+				//あれば更新
+				goal.get(i).title = t;
+				return;
+			}
+		}
+		//なければ追加
+		goal.add(new Goal(y, m, t));
+	}
 }
