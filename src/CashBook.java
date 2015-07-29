@@ -91,5 +91,10 @@ public class CashBook {
 		}
 		//なければ追加
 		goal.add(new Goal(y, m, t));
+		this.sortGoal();
+	}
+
+	public void sortGoal(){
+		Collections.sort(goal, new GoalComparator());
 	}
 }
